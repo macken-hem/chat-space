@@ -10,7 +10,7 @@
 |username|string|null:false|
 |group_id|integer|null: false, foreign_key:true|
 ### Association
--has_many  : groups
+-has_many  : groups, through:  :groups_users
 -has_many  : messages
 
 
