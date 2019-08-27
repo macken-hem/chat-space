@@ -1,0 +1,60 @@
+.Contents
+  .left__contents
+    .left__header
+      .left__header__box
+        .left__header__box__user--name
+          グループ名
+        .left__header__box__menu
+          .left__header__box__menu__new-group
+          =link_to "", class: "left__header__box__menu__new-group" do
+            = fa_icon 'edit', class: 'icon'
+          .left__header__box__menu__edit-user
+          =link_to "", class: "left__header__box__menu__edit-user" do
+            = fa_icon 'cog', class: 'icon'
+    .groups
+      .group 
+        .group__group-name
+          グループ
+        .group__lastest-message
+          Hello
+          
+  .main__contents
+    .main__header
+      .main__header__left-box
+        .main__header__left-box__current-group
+          所属グループ
+          .menbers
+            .main__header__left-box__memmber-list
+              Menber:
+            .main__header__left-box__memmber-list__memmber
+              test
+ 
+        =link_to "", class: "main-header__edit-btn " do
+          EDIT
+
+    .messages
+      .message
+        .message__upper-info
+          .message__upper-info__talker
+          USER1
+          .message__upper-info__date
+            20xx/xx/xx
+        .message__text
+        hello
+        .message__upper-info
+          .message__upper-info__talker
+          USER2
+          .message__upper-info__date
+            20xx/xx/xx
+        .message__text
+        hey
+    .form
+      .new_message
+        %input.input__box__text
+        .input__box__image
+          %label{for: 'image'}
+            %input.input__box__image__file.hidden#image{type: 'file'}
+            = fa_icon 'picture-o'
+        =link_to "", class: "submit" do
+          SEND
+     
