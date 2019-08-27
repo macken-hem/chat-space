@@ -3,13 +3,13 @@
     .left__header
       .left__header__box
         .left__header__box__user--name
-          グループ名
+          = current_user.name
         .left__header__box__menu
           .left__header__box__menu__new-group
           =link_to "", class: "left__header__box__menu__new-group" do
             = fa_icon 'edit', class: 'icon'
           .left__header__box__menu__edit-user
-          =link_to "", class: "left__header__box__menu__edit-user" do
+          =link_to edit_user_path(current_user), class: "left__header__box__menu__edit-user" do
             = fa_icon 'cog', class: 'icon'
     .groups
       .group 
