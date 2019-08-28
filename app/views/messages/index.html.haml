@@ -13,10 +13,12 @@
             = fa_icon 'cog', class: 'icon'
     .groups
       .group 
-        .group__group-name
-          グループ
-        .group__lastest-message
-          Hello
+        - current_user.groups.each do |group|
+          = link_to '#' do
+            .group__group-name
+              = group.name
+            .group__lastest-message
+              n
           
   .main__contents
     .main__header
