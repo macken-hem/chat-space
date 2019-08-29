@@ -14,7 +14,7 @@
     .groups
       .group 
         - current_user.groups.each do |group|
-          = link_to groups_path(group) do
+          = link_to group_messages_path(group) do
             .group__group-name
               = group.name
             .group__lastest-message
@@ -52,11 +52,10 @@
         hey
     .form
       .new_message
-        %input.input__box__text
-        .input__box__image
-          %label{for: 'image'}
-            %input.input__box__image__file.hidden#image{type: 'file'}
-            = fa_icon 'picture-o'
-        =link_to "", class: "submit" do
-          SEND
-     
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'input__box__text', placeholder: 'type a message'
+          .input__box__image
+            = f.label :image do
+              = fa_icon 'picture-o', class: 'icon'
+              = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'submit'
