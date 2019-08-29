@@ -35,21 +35,9 @@
           EDIT
 
     .messages
-      .message
-        .message__upper-info
-          .message__upper-info__talker
-          USER1
-          .message__upper-info__date
-            20xx/xx/xx
-        .message__text
-        hello
-        .message__upper-info
-          .message__upper-info__talker
-          USER2
-          .message__upper-info__date
-            20xx/xx/xx
-        .message__text
-        hey
+      = render @messages
+
+        
     .form
       .new_message
         = form_for [@group, @message] do |f|
