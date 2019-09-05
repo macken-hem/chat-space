@@ -15,9 +15,8 @@ $(function() {
                       ${message.content}
                     </p>
                     <div class="message__text__image">
-                      ${message.image}
+                    ${message.image}
                     </div>
-    
                   </div>
                 </div>`
     return html;
@@ -38,9 +37,9 @@ $(function() {
     .done(function(data){
       var html = buildHTML(data);
       $('.messages').append(html);
-      $('#message_content').val('');
 
       $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      $('#new_message')[0].reset();
 
     })
     .fail(function() {
