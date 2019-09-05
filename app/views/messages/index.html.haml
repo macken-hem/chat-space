@@ -40,8 +40,8 @@
         
     .form
       .new_message
-        = form_for [@group, @message] do |f|
-          = f.text_field :content, class: 'input__box__text', placeholder: 'type a message'
+        = form_for [@group, @message] do |f| 
+          = f.text_field :content, class: 'input__box__text',  placeholder: 'type a message'
           .input__box__image
             = f.label :image do
               = fa_icon 'picture-o', class: 'icon'
