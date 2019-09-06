@@ -1,5 +1,5 @@
 $(document).on('turbolinks:load', function() {
-
+  var menberlist = [];
   function buildUsersHTML(users){
     var html = `<div class="chat-group-user clearfix">
                <p class="chat-group-user__name">${users.name}</p>
@@ -15,13 +15,13 @@ $(document).on('turbolinks:load', function() {
     return html;
   }
 
-  function addUsers(id,name){
-    var html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-22'>
-                <input name='group[user_ids][]' type='hidden' value='${id}'>
-                <p class='chat-group-user__name'>${name}</p>
-                <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
-                </div>`
-  return html;
+  function addUser(name,user_id) {
+    var html =`<div class='chat-group-user clearfix js-chat-member' id="chat-group-user-${user_id}">
+               <input name="group[user_ids][]" type="hidden" value="${user_id}">
+               <p class="chat-group-user__name">${name}</p>
+               <a class="user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn data-user-id=${user_id} data-user-name=${name}"> 削除</a>
+              </div>`
+    $("#chat-group-users").append(html);
   }
 
   
@@ -42,24 +42,23 @@ $(document).on('turbolinks:load', function() {
       })
      }
      else {
-      var html = appendNotUser("一致する文字列がありません。")
+      var html = appendNotUser("一致するユーザーがいません")
        $(`#user-search-result`).append(html);
      }
      })
      .fail(function() {
-      alert('名前検索に失敗しました');
+      alert('検索に失敗しました');
    })
   });
 
 
-  $("#user-search-result").on("click",".user-search-add", function(users){
-      $(this).parent().remove();
-      var id = $(this).data('user-id');
-      var name = $(this).data("user-name")
-      var html = addUsers(id,name)
-   $(`#chat-group-users`).append(html);
-  })
-  $(document).on("click",".user-search-remove",function(users){
+  $("#user-search-result").on("click", ".chat-group-user__btn--add", function(e){
+    var name = $(this).data("user-name");
+    var user_id = $(this).data("user-id");
+    addUser(name,user_id);
     $(this).parent().remove();
-  })
+  });
+  $("#chat-group-users").on("click", ".js-remove-btn", function(e){
+    $(this).parent().remove();
+  });
 });
