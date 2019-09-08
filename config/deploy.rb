@@ -59,4 +59,3 @@ end
 # set :ssh_options, verify_host_key: :secure
 
 	
-server '3.114.183.126', user: 'ec2-user', roles: %w{app db web
