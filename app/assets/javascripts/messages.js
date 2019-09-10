@@ -78,12 +78,11 @@ $(document).on('turbolinks:load', function() {
         });
       }else {
       clearInterval(reloadMessages);
-      }
+      };
     };
 
     $(function(){
       setInterval(reloadMessages, 5000);
       });
-  
   })
-  });
+});
