@@ -8,6 +8,13 @@ $(function() {
     return html;
   }
 
+  function appendNotFind(users){
+    var html = `<div class="chat-group-user clearfix">
+                <p class="chat-group-user__name">${users}</p>
+                </div>`
+    return html;
+  }
+
   function appendNotUser(users){
     var html = `<div class="chat-group-user clearfix">
                 <p class="chat-group-user__name">${users}</p>
@@ -25,7 +32,7 @@ $(function() {
   }
 
   
-  $(".chat-group-form__input").on("keyup", function(){
+  $("#user-search-field").on("keyup", function(){
     var input = $("#user-search-field").val();
     $.ajax({
       type: 'GET',
@@ -41,6 +48,12 @@ $(function() {
         $(`#user-search-result`).append(html)
       })
      }
+
+     else if(input.length === 0){
+      var html = appendNotFind("")
+      $(`#user-search-result`).append(html);
+     }
+     
      else {
       var html = appendNotUser("一致するユーザーがいません")
        $(`#user-search-result`).append(html);
