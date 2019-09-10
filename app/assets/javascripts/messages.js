@@ -54,13 +54,7 @@ $(document).on('turbolinks:load', function() {
     return false;
   })
 
-  
-  $(function(){
-    setInterval(reloadMessages, 10000);
-    });
-
-
-    function reloadMessages() {
+    var reloadMessages = function() {
       if (window.location.href.match(/\/groups\/\d+\/messages/)) {
         var last_message_id = $(".message:last").data("message-id");
   
@@ -82,9 +76,14 @@ $(document).on('turbolinks:load', function() {
         .fail(function() {
           alert('自動更新に失敗しました');
         });
-      } else {
+      }else {
       clearInterval(reloadMessages);
       }
     };
+
+    $(function(){
+      setInterval(reloadMessages, 5000);
+      });
+  
   })
   });
