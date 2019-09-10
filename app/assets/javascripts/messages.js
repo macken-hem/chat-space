@@ -1,5 +1,7 @@
 $(document).on('turbolinks:load', function() {
   
+  $(function() {
+
   function buildHTML(message) {
     
     var imagehtml = message.image == null ? "" : `<img src="${message.image}" class="message__text__image">`
@@ -58,7 +60,7 @@ $(document).on('turbolinks:load', function() {
     });
 
 
-    var reloadMessages = function() {
+    function reloadMessages() {
       if (window.location.href.match(/\/groups\/\d+\/messages/)) {
         var last_message_id = $(".message:last").data("message-id");
   
@@ -68,6 +70,7 @@ $(document).on('turbolinks:load', function() {
           dataType: 'json',
           data: {last_id: last_message_id}
         })
+
         .done(function(messages) {
           var insertHTML = '';
           messages.forEach(function(message){
@@ -79,9 +82,9 @@ $(document).on('turbolinks:load', function() {
         .fail(function() {
           alert('自動更新に失敗しました');
         });
-      }
-      else {
+      } else {
       clearInterval(reloadMessages);
       }
     };
+  })
   });
